@@ -1,38 +1,39 @@
 const findRotationPoint = (words) => {
   // a = 97, z = 122
-  let size = words.length;
+  let lastIndex = words.length;
   // if ( size < 3 ) throw Error('need at least 3 strings to find a rotation point!');
-  let lastIndex = 0
+  let firstIndex = 0
   let last = words[0]
   let result = false
   do {
-    let halfway = Math.floor((size - lastIndex)/2) + lastIndex
-    current = words[halfway]
-    let next = (halfway === size -1 && size !== 1) ? words[0] : words[halfway + 1];
+    // find the halfway index
+    let halfway = Math.floor((lastIndex - firstIndex)/2) + firstIndex
+    // and get its value
+    let current = words[halfway]
+    // set the next value to the next value unless the conditions for the special case of 2 are met
+    let next = (halfway === lastIndex -1 && lastIndex !== 1) ? words[0] : words[halfway + 1];
+    // find the first index where the the current word and comparator have different letters
     let sortIndex = 0
     while ( next.charCodeAt(sortIndex) === current.charCodeAt(sortIndex) && sortIndex < next.length ){
       sortIndex++
     }
+    //if the next word comes before the current word, we've found our rotation point.
     if (next.charCodeAt(sortIndex) < current.charCodeAt(sortIndex)) { result = halfway + 1 }
+   // else either
     else {
-      if ( halfway === 0) { size = Math.floor(words.length/2)
-      } else if ( last.charCodeAt(sortIndex) > current.charCodeAt(sortIndex) ) {
-        size = halfway;
-        current = last;
+      if ( last.charCodeAt(sortIndex) > current.charCodeAt(sortIndex) ) {
+        // shift left or
+        lastIndex = halfway;
       } else  {
-        current = last;
-        lastIndex = halfway };
+        // shift right
+        firstIndex = halfway };
     }
 
   // Find the rotation point in the vector
-  }while(result === false)
+  } while (result === false)
 
   return result;
 }
-
-
-
-
 
 
 
