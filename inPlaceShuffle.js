@@ -9,11 +9,17 @@ const getRandom = (floor, ceiling) => {
 }
 
 const inPlaceShuffle = (array) => {
+  // to make sure that the entire process has an even distribution of solutions,
+  // we need to walk through the solution and only pick from the remaining choices,
+  // shuffling the deck one card at a time.
+  // but first check that we can shuffle the deck
+  // iterate through the indices
+  // and find a random spot from the current indice, onward
+  // then swap the values and continue
 }
+
+
+
 let matrix = Array(10).fill(null).map( () => Array(10).fill(null).map((val,i) => i))
 matrix.forEach( x => inPlaceShuffle(x));
 console.log(matrix);
-for ( let i = 0; i < matrix.length; i += 1) {
-  inPlaceShuffle(matrix[i])
-}
-console.log(matrix)
