@@ -13,9 +13,18 @@ const inPlaceShuffle = (array) => {
   // we need to walk through the solution and only pick from the remaining choices,
   // shuffling the deck one card at a time.
   // but first check that we can shuffle the deck
+  if (array.length < 2) return array;
   // iterate through the indices
-  // and find a random spot from the current indice, onward
-  // then swap the values and continue
+  for( let i = 0; i < array.length; i += 1) {
+    // and find a random spot from the current indice, onward
+    const swapIndex = getRandom(i, array.length - 1)
+    // then swap the values and continue
+    if (swapIndex !== i ) {
+      const swapVal = array[swapIndex];
+      array[swapIndex] = array[i];
+      array[i] = swapVal;
+    }
+  }
 }
 
 
