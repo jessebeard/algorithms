@@ -24,6 +24,34 @@ function findRepeat(numbers) {
   // resembles the head of a linked list, it will never have a pointer to it,
   // once we are in the linked list, we no that its start will be a repeat.
 
+  const maxVal = numbers.length - 1;
+
+  // STEP 1 - get in the loop
+  let position = maxVal + 1;
+  for (let i = 0; i < maxVal; i++) {
+    position = numbers[position - 1];
+  }
+  // STEP 2 - find the length of the cycle
+  // remembering a position and count the steps to get back
+  const positionMemo = position;
+  let current = numbers[position - 1];
+  let stepCount = 1;
+  while (current !== positionMemo) {
+    current = numbers[current - 1];
+    stepCount += 1;
+  }
+  // STEP 3 - get the first node of the cycle.
+  let head = maxVal + 1;
+  let tail = maxVal + 1;
+  for (let i = 0; i < stepCount; i++) {
+    head = numbers[head - 1];
+  }
+  while (head !== tail) {
+    tail = numbers[tail - 1];
+    head = numbers[head - 1];
+  }
+  return tail
+
 }
 
 // Tests
