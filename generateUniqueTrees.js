@@ -26,6 +26,11 @@ Constraints:
 1 <= n <= 8
 
 
+//Note, I found this one fairly difficult to understand at first because the graphic made 
+it seem like I was supposed to find the third tree in the list. I think I would have been
+better off without the graphic!!
+
+
 ***/
 var generateTrees1 = function(n) {
    if (n === 0) {
