@@ -33,4 +33,19 @@ var postorderTraversalIterative2 = function(root) {
   return result.reverse();
 };
 
+/***
+ * as usual, a recursive solution is trivial
+*/
+
+
+const postorderTraversal = (root) => (
+  (function recursiveDFS(node, resultArr){
+    if(node === null) return resultArr;
+    if(node.left) recursiveDFS(node.left, resultArr);
+    if(node.right) recursiveDFS(node.right, resultArr);
+    resultArr.push(node.val);
+    return resultArr;
+  })(root, [])
+);
+
 
