@@ -25,7 +25,7 @@
 
 
 
-var levelOrder = function(root) {
+var levelOrderIterative = function(root) {
   let resultMatrix = [];
   if (!root) return resultMatrix;
   let currentLevel = [root];
@@ -47,3 +47,33 @@ var levelOrder = function(root) {
   }while(currentLevel.length > 0);
   return resultMatrix;
 };
+
+// I was unhappy waith the overall "flow", and upon reflection
+// recognized if the inner while loops flipped and created 
+// currentLevel in the do-while, and started/checked on nextLevel.
+// the result would be no messy delete loop, no lengthCheck
+// and the entire function would be more readable.
+
+// side note, this took <5 mins. 
+var levelOrderIterative = function(root) {
+  let resultMatrix = [];
+  if (!root) return resultMatrix;
+  let nextLevel = [root];
+  do {
+    let currentLevel = [];
+    let currentLevelOrderedValues = [];
+    while(nextLevel.length > 0) {
+      let node = nextLevel.pop()
+      currentLevelOrderedValues.push(node.val);
+      currentLevel.push(node)
+    }
+    resultMatrix.push(currentLevelOrderedValues);
+    while(currentLevel.length > 0) {
+      const currentNode = currentLevel.pop();
+      if(currentNode.right) nextLevel.push(currentNode.right);
+      if(currentNode.left) nextLevel.push(currentNode.left);
+    }
+  }while(nextLevel.length > 0);
+  return resultMatrix;
+};
+// much better 
