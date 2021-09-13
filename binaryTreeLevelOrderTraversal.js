@@ -76,4 +76,24 @@ var levelOrderIterative = function(root) {
   }while(nextLevel.length > 0);
   return resultMatrix;
 };
-// much better 
+// much better
+
+// next for a recursive solution.
+// as I kind of expected, abysmal performance.
+
+const levelOrderRecursive = (root) => {
+  if(!root) return [];
+  return (function recursiveBFTraversal(nodeArray, resultMatrix) {
+    console.log(nodeArray, resultMatrix)
+    if(nodeArray.length === 0) return resultMatrix;
+    let nextLevelNodeArray = [];
+    let currentLevelValueArray = [];
+    nodeArray.forEach(node => {
+      currentLevelValueArray.push(node.val);
+      if(node.left) nextLevelNodeArray.push(node.left);
+      if(node.right) nextLevelNodeArray.push(node.right);
+    })
+    resultMatrix.push(currentLevelValueArray)
+    return recursiveBFTraversal(nextLevelNodeArray, resultMatrix);
+  })([root], [])
+}
