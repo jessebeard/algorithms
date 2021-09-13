@@ -102,3 +102,16 @@ var preorderTraversal = function(root) {
     return result;
 };
 
+
+/*
+recursive solution is trivial
+*/
+const preorderTraversal = (root, result) => {
+    result = result || [];
+    if(root) {
+      result.push(root.val)
+      if(root.left) preorderTraversal(root.left, result);
+      if(root.right) preorderTraversal(root.right, result);
+    }
+      return result;
+}  
