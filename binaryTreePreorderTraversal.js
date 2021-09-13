@@ -1,12 +1,36 @@
+/*
+Second approach after recognizing that a stack is far more effective than
+my overly complicated first approach 
 
+*/
 
+const preorderTraversal = (root) => {
+  let result = []
+  if(root){
+    let stack = []
+    stack.push(root)
+    while(stack.length !== 0){
+        const currentNode = stack.pop()
+        result.push(currentNode.val)
+        if(currentNode.right) stack.push(currentNode.right)
+        if(currentNode.left) stack.push(currentNode.left) 
+    }
+  }
+  return result;
+}
 /*
 Discussion:
 
 this is my first real attempt at an itterative approach to a binary tree traversal.
-not an optimal solution, a stack is better. 
+not an optimal solution, a stack is better. I coded that above.  
 
-but the logic is as follows
+basically, I created a hashmap that stored the state of the traversal and the 
+parent of each node. then used a boolean to keep track of left and right for
+updating the hashmap. 
+
+
+the logic is as follows
+
 // create result array
 // create hashtable(map) nodesVisited
     // each key will be a node
