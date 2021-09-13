@@ -37,3 +37,62 @@ var inorderTraversalIterative = function(root) {
   }
   return result
 };
+
+/* 
+recursive solution, again, trivial to implement
+*/
+
+const inorderTraversalRecursive = (root) => {
+  if(!root) return [];
+  let result = [];
+    (function recursiveTraversal(node, resultArray) {
+      if(node.left) recursiveTraversal(node.left, resultArray)
+      resultArray.push(node.val)
+      if(node.right) recursiveTraversal(node.right, resultArray)
+    })(root, result);
+  return result;
+}
+
+
+/* 
+sort of similar to my first iterative attempt at solving preorder,
+uses a Set to keep track of where its been and a stack to 
+keep track of where it needs to go.
+*/
+
+
+var inorderTraversal = function(root) {
+  if (root === null) {
+      return [];
+  }
+  
+  const queue = [root];
+  
+  const result = [];
+  const visited = new Set();
+  
+  const addToResult = (nodeToAdd) => {
+      if (visited.has(nodeToAdd)) {
+          return;
+      }
+      
+      result.push(nodeToAdd.val);
+      visited.add(nodeToAdd);
+          }
+  
+  while(queue.length > 0) {
+      let node = queue[queue.length - 1];
+      
+      if (node.left && !visited.has(node.left)) {
+          queue.push(node.left); 
+      } else if (node.right && !visited.has(node.right)) {
+          addToResult(node);
+          queue.push(node.right); 
+      } else {
+          addToResult(node);
+          queue.pop(); 
+      }
+  } 
+  
+  return result;
+};
