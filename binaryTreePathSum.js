@@ -40,7 +40,17 @@ var hasPathSum = function(root, targetSum) {
 
 /* 
 
-This answer works, but there is a better answer still
+This answer works, but there is a cleaner answer.
 
 */
+
+var hasPathSum = function(root, targetSum) {
+  if(!root) return false;
+  if(!root.left && !root.right) return root.val === targetSum;
+  const leftSide = hasPathSum(root.left, targetSum - root.val);
+  const rightSide = hasPathSum(root.right, targetSum - root.val);
+  return leftSide || rightSide;
+}
+
+
 
