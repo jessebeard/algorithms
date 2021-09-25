@@ -37,6 +37,23 @@ nums is sorted and rotated between 1 and n times.
  ***/
 
 
+// returning to the problem after much BT practice
+// finish in 13 mins first try
+
+var findMin = function(nums) {
+ let left = 0;
+ let right = nums.length - 1;
+ while (left + 1 < right) {
+   let mid = ~~((left + right) / 2);
+   if (nums[left] > nums[right]) { // (sub) array is rotated
+     if(nums[left] < nums[mid]) left = mid // left side is sorted
+     else right = mid;
+   }
+   else return nums[left];  // (sub) array is sorted, last element smallest
+ }
+ if (nums[left] < nums[right]) return nums[left] 
+ else return nums[right];
+};
 
 //My first approach, full recursive.
 var findMin = function(nums, li, ri) {
