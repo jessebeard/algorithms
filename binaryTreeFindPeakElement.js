@@ -3,6 +3,10 @@
  * @return {number}
  */
 
+
+// lc 162
+// completed in ~9 mins 
+
 var findPeakElement = function(nums) {
     let left = 0;
     let right = nums.length -1;
