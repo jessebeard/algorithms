@@ -38,7 +38,8 @@ nums is sorted and rotated between 1 and n times.
 
 
 // returning to the problem after much BT practice
-// finish in 13 mins first try
+
+// lc 153 | 13 mins | 1 attempt/ 0 bugs | Medium | 24-9-21
 
 var findMin = function(nums) {
  let left = 0;
