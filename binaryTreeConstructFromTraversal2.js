@@ -1,12 +1,13 @@
 /**
  * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
  */
-/** 
+  function TreeNode(val, left, right) {
+   this.val = (val===undefined ? 0 : val)
+   this.left = (left===undefined ? null : left)
+  this.right = (right===undefined ? null : right)
+}
+
+/**
  * Prompt:
  * Construct a binary tree given the preorder and post order traversal
        * @param {number[]} preorder
@@ -23,7 +24,7 @@
     let inorderIndex = 0;
     while(preorderIndex < preorder.length){
       let isLeft = true;
-      let parentNode = stack[stackIndex];   
+      let parentNode = stack[stackIndex];
       let currentNode = new TreeNode(preorder[preorderIndex]);
       let cleanStack = parentNode.val === inorder[inorderIndex];
       while(cleanStack){
@@ -49,3 +50,6 @@
   }
   return root;
 };
+
+
+

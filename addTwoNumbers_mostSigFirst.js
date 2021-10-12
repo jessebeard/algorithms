@@ -1,7 +1,7 @@
-/***
+t/***
 *****Prompt*****
 You are given two non-empty linked lists representing two non-negative integers.
- The most significant digit comes first and each of their nodes contains a single digit. 
+ The most significant digit comes first and each of their nodes contains a single digit.
 Add the two numbers and return the sum as a linked list.
 
 You may assume the two numbers do not contain any leading zero, except the number 0 itself.
@@ -15,7 +15,7 @@ Output: [8,0,7]
 
 Input: l1 = [0], l2 = [0]
 Output: [0]
- 
+
 
 *****Constraints*****
 
@@ -42,7 +42,7 @@ var addTwoNumbers = function(l1, l2) {
     if(arr.length > i + 1){
     LL.next = new ListNode(0)
     buildLLfromArr(arr, i+1, LL.next)
-    }  
+    }
   }
   buildLLfromArr(resultArr, 0, answer)
   return answer;
