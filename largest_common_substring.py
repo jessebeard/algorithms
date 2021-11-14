@@ -1,7 +1,6 @@
 def longestCommonSubsequence(text1, text2):
   m, n = len(text1), len(text2)
   dp = [0]*m
-  print(len(text1), len(text2), text1, text2 )
   for i in range(n):
     current = [0]*m
     for j in range(m):
@@ -15,7 +14,7 @@ def longestCommonSubsequence(text1, text2):
     dp = current
   return dp[m-1]
 testA = longestCommonSubsequence('ababaabababababbbabbababababababbbababaabababababbbabbababababababbb', 'bababababababababbaaaabbbbbabababbaabbabababbabbabababbbbabbaabbab')
-print('testA passes: ${testA == 57}, testA returns ${testA}'
+print(f'testA passes: {testA == 57}, testA returns {testA}')
 
 """discussion"""
     # basic idea: use an array to store the largest substring up to that point
