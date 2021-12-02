@@ -1,59 +1,31 @@
 
 # lc 368
-from collections import defaultdict
+from collections import defaultdict, deque
 from functools import lru_cache
 
 
 def largestDivisibleSubset(nums: list[int]) -> list[int]:
-    if len(nums) == 1:
-        return [nums[0]]
-    nums.sort(reverse=True)
-    print(nums)
-    hasOne = nums[0] == 1
-    checked = defaultdict(list)
-    num_pairs = []
+    # We'll traverse values in nums in ascending order
+    nums.sort()
+    # Ordered (by length) list of valid subsets that are largest subset candidates
+    subsets = []
 
-    def recursivehelper(arr, index):
-        if index == len(nums):
-            return arr
-        longest_branch = []
-        for j in range(index+1,len(nums)):
-            branch = []
-            if j != len(nums)-1:
-                branch = recursivehelper(arr[:], j)
-                if len(longest_branch) < len(branch):
-                    longest_branch = branch
-            if not nums[j] == arr[0] and arr[-1]%nums[j] == 0:
-                arr.append(nums[j])
-                if nums[j] in checked:
-                    arr.extend(checked[nums[j]])
-                    if len(longest_branch) > len(arr):
-                        return longest_branch
-                    else:
-                        return arr
-        return longest_branch if len(longest_branch) > len(arr) else arr
-
-    for i in range(len(nums)):
-        if nums[i] in checked:
-            continue
-        if hasOne and i > 0:
-            divisible_set= [1, nums[i]]
-            divisible_set = recursivehelper(divisible_set, i+1)
-        else:
-            divisible_set = [nums[i]]
-            divisible_set = recursivehelper(divisible_set, i)
-        if len(divisible_set) > 0:
-            num_pairs.append((divisible_set))
-            for i in range(1,len(divisible_set)):
-                if len(divisible_set) > len(checked[divisible_set[i]]):
-                    checked[divisible_set[i]] = divisible_set[i+1:]
-    num_pairs.sort(key=lambda a: len(a), reverse=True)
-    # print(checked)
-    if len(num_pairs) == 0:
-        if hasOne:
-            return [nums[0], nums[1]]
-        return [nums[0]]
-    return list(reversed( num_pairs[0]))
+    # Add max-length subset for each value
+    for i, num in enumerate(nums):
+    # Find the biggest subset we can add num to, and add this new subset to subsets (maintaining order)
+        for j in range(i-1, -1, -1):
+            # If satisfies divisibility, insert into subsets (as per size, 1 bigger than previous subset)
+            if not num%subsets[j][-1]:
+            # Location of where to insert new extended subset (Alt.: Could binary search for it)
+                p = next(filter(lambda k: len(subsets[j])!=len(subsets[k]), range(j+1, i)), i)
+                j=filter(lambda k: len(subsets[j])!=len(subsets[k]), range(j+1, i))
+                print(k, num,  subsets)
+                subsets.insert(k, subsets[j]+[num])
+                break
+        else:# num can't be added as an extension to any subset, create a blank one for it
+            subsets.insert(0, [num])
+    print(subsets)
+    return subsets[-1]
 
 print(largestDivisibleSubset([1,2,3,4,8]))
 print(largestDivisibleSubset([1,2,3]))
