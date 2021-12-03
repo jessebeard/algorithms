@@ -1,8 +1,8 @@
 // part 1
 const text = document.querySelector('pre').innerText;
 let binaryNums = text.trim().split("\n")
-let length = binaryNums.length
-let arrayLength = binaryNums[0].length
+const length = binaryNums.length
+const arrayLength = binaryNums[0].length
 
 binaryNums = binaryNums.map(x => x.split(""))
 	.map(binaryArray =>  binaryArray.map( char => parseInt(char)))
@@ -33,13 +33,11 @@ while (o2binary.length > 1) {
   const length = o2binary.length;
   const currentMost = o2binary
     .reduce((acc, cur) => acc += cur[index], 0);
-	console.log(currentMost)
   const filterTarget = currentMost >= length/2 ? 1 : 0;
   o2binary = o2binary
 		.filter(num => num[index] === filterTarget);
   index += 1;
 }
-console.log(o2binary)
 const o2value = parseInt(o2binary[0].join(''), 2)
 
 index = 0
@@ -51,10 +49,8 @@ while (co2scrubBinary.length > 1) {
   const filterTarget = currentMost >= length/2 ? 0 : 1;
   co2scrubBinary = co2scrubBinary
 		.filter(num => num[index] === filterTarget);
-	console.log(co2scrubBinary)
   index += 1;
 }
-console.log(co2scrubBinary)
 const co2scrubValue = parseInt(co2scrubBinary[0].join(''), 2)
 
 console.log(o2value, co2scrubValue, o2value * co2scrubValue)
