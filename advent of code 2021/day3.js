@@ -9,7 +9,7 @@ binaryNums = binaryNums.map(x => x.split(""))
 
 let accumulator = new Array(arrayLength).fill(0)
 const gammaRateBinary = binaryNums.reduce((acc, cur) => (
-	cur.forEach((_,i) => acc[i] += cur[i]), accumulator))
+    cur.forEach((_,i) => acc[i] += cur[i]), accumulator))
   .map( oneCount => oneCount>length/2 ? 1 : 0)
 
 const epsilonRateBinary = gammaRateBinary.map(b => b?0:1)
