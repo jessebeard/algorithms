@@ -28,7 +28,7 @@
       return a
     }, 0), 0 )
   console.log(result)
-  }
+}
 
 // part 2
 
