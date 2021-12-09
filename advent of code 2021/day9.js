@@ -4,7 +4,7 @@
   const dirs = [[1,0],[0,1],[-1,0],[0,-1]]
   const lowPoints = []
   const basinSizes = []
-	const checked = new Set()
+  const checked = new Set()
   const findBasinSize = (x,y,set) => {
     let count = 1
     dirs.forEach(([dx,dy])=> {
@@ -13,7 +13,7 @@
       if ( nX>=0 && nX!==dM[0].length
       && nY>=0 && nY<dM.length
       && dM[nY][nX] < 9 && dM[nY][nX] > dM[y][x]
-			&& !set.has(`${nX},${nY}`)) {
+      && !set.has(`${nX},${nY}`)) {
         set.add(`${nX},${nY}`)
         count += findBasinSize(nX, nY, set)
       }
